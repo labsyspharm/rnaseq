@@ -1,0 +1,6 @@
+title: "Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio"
+author: Laboratory of Systems Pharmacology
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
