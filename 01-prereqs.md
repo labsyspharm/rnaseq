@@ -1,4 +1,4 @@
-# Prerequisites in O2 environment
+# Prerequisites in O2 environment {#prereqs}
 
 * If this is your first time using a linux command shell, make sure you type the commands in exactly as is. Things like spaces and quotes matter. The easiest way to do this is to copy and paste the commands from these instructions into your command shell.
 
@@ -7,13 +7,15 @@
 * Familiarize yourself with [nano](https://www.nano-editor.org/dist/v2.2/nano.html), a text editor in linux. Specifically, make note of keyboard shortcuts `CTRL+O` to save, `CTRL+X` to exit.
 
 * Use `nano ~/.bashrc` to open your `.bashrc` file and add the following lines:
-    ```
-	# Defines a new command, soar, for requesting an interactive compute shell
+
+    ```{bash, eval=FALSE}
+    # Defines a new command, soar, for requesting an interactive compute shell
     alias 'soar=srun -p interactive -t 0-12:00 -n 2 --pty /bin/bash'
 	
     # Environment variables for running bcbio
     export PATH=/n/app/bcbio/dev/anaconda/bin/:/n/app/bcbio/tools/bin:$PATH
     ```
+
     Save and exit (`CTRL+O` and `CTRL+X` in `nano`). The first line defines a new command `soar`, which you will use to request an interactive compute shell after logging into O2. The `export` line tells your environment where `bcbio` is located.
 	
 * **The environment installed in the `bcbio` directory will occasionally create conflicts with other O2 modules. If you intend on using O2 for more than alignment of RNAseq data, it is good practice to comment out the `export` line (by placing a # in front of it) when not using `bcbio`.**
