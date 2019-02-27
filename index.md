@@ -15,8 +15,8 @@ github-repo: labsyspharm/rnaseq
     - If yes, run `bcbio_prepare_samples.py` to merge the files. Rename the resulting `*-merged.csv` to `alignment.csv`. (This is often the case for deep RNAseq experiments.)
 	- If not, compose `alignment.csv` that maps filenames to corresponding sample descriptions. (This is often the case for DGE.)
 4. [Download the latest human (or mouse) genome reference.](#refgenome)
-5. Compose a setting YAML file.
-6. Instantiate the `bcbio` workspace. Descend into `alignment/work` subdirectory. Kick off a `bcbio` run.
+5. [Compose a setting YAML file.](#reference)
+6. [Instantiate the `bcbio` workspace. Descend into `alignment/work` subdirectory. Kick off a `bcbio` run.](#bcbio)
 
 ## Recommended Directory Structure
 
