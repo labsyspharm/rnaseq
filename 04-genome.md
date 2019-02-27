@@ -12,3 +12,15 @@
   * `wget ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz`
   * After downloading both `cdna` and `ncrna`, merge the two together into a single file:
     * `cat Homo_sapiens.GRCh38.cdna.all.fa.gz Homo_sapiens.GRCh38.ncrna.fa.gz > Homo_sapiens.GRCh38.95.fa.gz`
+
+## Digital Gene Expression
+
+No additional steps required.
+
+## Deep RNAseq
+
+When working with deep RNAseq data, you will also need to account for the [ERCC ExFold RNA Spike-In](https://www.thermofisher.com/order/catalog/product/4456739) that is often used for quality control.
+  * Determine the version of the spike in used in your experiment.
+  * Identify the FASTA files that catalogue the spike in from the [vendor's page](https://www.thermofisher.com/order/catalog/product/4456739). This can usually be found under the manuals tab. As of writing this, ERCC92 is the latest version with the FASTA available at https://assets.thermofisher.com/TFS-Assets/LSG/manuals/ERCC92.zip
+  * Download the spike-in file: `wget https://assets.thermofisher.com/TFS-Assets/LSG/manuals/ERCC92.zip`
+  * Unzip the downloaded file to retrieve the FASTA sequences: `unzip ERCC92.zip`
