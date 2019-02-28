@@ -12,7 +12,7 @@ S4.fastq.gz,S4
 
 where file `S1.fastq.gz` is mapped to the sample named `S1`, and so on. Additional columns can be included in this file and get preserved by bcbio as sample metadata.
 
-The rest of the guide assumes that your sample description file is named `alignment.csv`.
+**The rest of the guide assumes that your sample description file is named `alignment.csv`.**
 
 ## Digital Gene Expression
 
@@ -25,7 +25,7 @@ DGE1_XT_S1_R1_001.fastq.gz,MasterPlate
 
 where the matching `DGE1_XT_S1_R2_001.fastq.gz` is not listed explicitly.
 
-## Deep RNAseq
+## Deep RNAseq {#sampledesc-deep}
 
 In the case of deep RNAseq data, you may have multiple FASTQ files per sample. Prior to running the aligner, these files need to be merged. `bcbio` provides a script for doing so, but it needs to know which files map to which samples. Compose a file named `toMerge.csv` that provides such a mapping. For example,
 
