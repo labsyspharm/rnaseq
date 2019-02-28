@@ -1,0 +1,9 @@
+rmd_files:
+  - index.md
+  - 01-prereqs.md
+  - 02-data.md
+  - 03-sampledesc.md
+  - 04-genome.md
+  - 05-settings.md
+  - 06-bcbio.md
+output_dir: docs

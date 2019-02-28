@@ -1,0 +1,11 @@
+bookdown::gitbook:
+  highlight: haddock
+  config:
+    toc:
+      before: |
+        <li><a href="./">Aligning RNAseq reads with bcbio</a></li>
+      after: |
+        <li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+    sharing:
+      github: yes
+      facebook: no
