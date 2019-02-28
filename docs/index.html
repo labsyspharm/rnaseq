@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio</title>
+  <meta name="description" content="Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="labsyspharm/rnaseq" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio" />
+  
+  
+  
+
+<meta name="author" content="Laboratory of Systems Pharmacology">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="prereqs.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; } /* Keyword */
+code > span.ch { color: #008080; } /* Char */
+code > span.st { color: #008080; } /* String */
+code > span.co { color: #008000; } /* Comment */
+code > span.ot { color: #ff4000; } /* Other */
+code > span.al { color: #ff0000; } /* Alert */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #008000; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #008080; } /* SpecialChar */
+code > span.vs { color: #008080; } /* VerbatimString */
+code > span.ss { color: #008080; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #0000ff; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ff4000; } /* Preprocessor */
+code > span.do { color: #008000; } /* Documentation */
+code > span.an { color: #008000; } /* Annotation */
+code > span.cv { color: #008000; } /* CommentVar */
+code > span.at { } /* Attribute */
+code > span.in { color: #008000; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Aligning RNAseq reads with bcbio</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Quick Start</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#recommended-directory-structure"><i class="fa fa-check"></i>Recommended Directory Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="prereqs.html"><a href="prereqs.html"><i class="fa fa-check"></i><b>1</b> Prerequisites in O2 environment</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data Storage</a><ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#download-the-primary-sequence-data-to-imstor"><i class="fa fa-check"></i><b>2.1</b> Download the primary sequence data to ImStor</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#copy-the-sequence-data-to-nscratch2"><i class="fa fa-check"></i><b>2.2</b> Copy the sequence data to /n/scratch2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sampledesc.html"><a href="sampledesc.html"><i class="fa fa-check"></i><b>3</b> Sample Description</a><ul>
+<li class="chapter" data-level="3.1" data-path="sampledesc.html"><a href="sampledesc.html#digital-gene-expression"><i class="fa fa-check"></i><b>3.1</b> Digital Gene Expression</a></li>
+<li class="chapter" data-level="3.2" data-path="sampledesc.html"><a href="sampledesc.html#sampledesc-deep"><i class="fa fa-check"></i><b>3.2</b> Deep RNAseq</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="refgenome.html"><a href="refgenome.html"><i class="fa fa-check"></i><b>4</b> Reference Genome</a><ul>
+<li class="chapter" data-level="4.1" data-path="refgenome.html"><a href="refgenome.html#digital-gene-expression-1"><i class="fa fa-check"></i><b>4.1</b> Digital Gene Expression</a></li>
+<li class="chapter" data-level="4.2" data-path="refgenome.html"><a href="refgenome.html#spike-in"><i class="fa fa-check"></i><b>4.2</b> Deep RNAseq</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="settings.html"><a href="settings.html"><i class="fa fa-check"></i><b>5</b> YAML Settings</a><ul>
+<li class="chapter" data-level="5.1" data-path="settings.html"><a href="settings.html#digital-gene-expression-2"><i class="fa fa-check"></i><b>5.1</b> Digital Gene Expression</a></li>
+<li class="chapter" data-level="5.2" data-path="settings.html"><a href="settings.html#deep-rnaseq"><i class="fa fa-check"></i><b>5.2</b> Deep RNAseq</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bcbio.html"><a href="bcbio.html"><i class="fa fa-check"></i><b>6</b> Submit <code>bcbio</code> job</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio</h1>
+<p class="author"><em>Laboratory of Systems Pharmacology</em></p>
+<p class="date"><em>Last Updated: 2019-02-28</em></p>
+</div>
+<div id="quick-start" class="section level1 unnumbered">
+<h1>Quick Start</h1>
+<ol style="list-style-type: decimal">
+<li><a href="prereqs.html#prereqs">Ensure your O2 environment is properly setup to run <code>bcbio</code>.</a> This only needs to be done once.</li>
+<li><a href="data.html#data">Put your data in permanent storage and create a copy on <code>/n/scratch2/</code>.</a></li>
+<li><a href="sampledesc.html#sampledesc">Do you have multiple fastq files that need to be merged for each sample?</a>
+<ul>
+<li>If yes, run <code>bcbio_prepare_samples.py</code> to merge the files. Rename the resulting <code>*-merged.csv</code> to <code>alignment.csv</code>. (This is often the case for deep RNAseq experiments.)</li>
+<li>If not, compose <code>alignment.csv</code> that maps filenames to corresponding sample descriptions. (This is often the case for DGE.)</li>
+</ul></li>
+<li><a href="refgenome.html#refgenome">Download the latest human (or mouse) genome reference.</a></li>
+<li><a href="settings.html#settings">Compose a setting YAML file.</a></li>
+<li><a href="bcbio.html#bcbio">Instantiate the <code>bcbio</code> workspace. Descend into <code>alignment/work</code> subdirectory. Kick off a <code>bcbio</code> run.</a></li>
+</ol>
+<div id="recommended-directory-structure" class="section level2 unnumbered">
+<h2>Recommended Directory Structure</h2>
+<p>To keep things organized, we recommend maintaining the following directory structure. Let <code>/n/scratch2/abc123/myProject/</code> be the root directory of your analysis. Replace <code>abc123</code> with your eCommons ID, and <code>myProject</code> with your project name. See the <a href="data.html#data">section on data storage</a> to learn how to create a copy of your data on <code>/n/scratch2</code>.</p>
+<p>Under <code>/n/scratch2/abc123/myProject/</code> create the following subdirectories:</p>
+<ul>
+<li><code>fastq</code> - place your raw fastq files here.</li>
+<li><code>merged</code> - automatically created by <code>bcbio_prepare_samples.py</code> if you have <a href="sampledesc.html#sampledesc-deep">mulitple files per sample</a>.</li>
+<li><code>reference</code> - download your <a href="refgenome.html#refgenome">reference genome</a> to this subdirectory.</li>
+<li><code>alignment</code> - automatically created by <code>bcbio</code> together with its subdirectories:
+<ul>
+<li><code>config</code> - <code>bcbio</code> will derive configuration files from your settings YAML file and place them here.</li>
+<li><code>work</code> - the bulk of the work files will reside here.</li>
+<li><code>final</code> - the resulting counts matrices will appear here, when <code>bcbio</code> finishes.</li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="prereqs.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
