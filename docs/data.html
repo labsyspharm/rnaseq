@@ -140,14 +140,18 @@ code > span.in { color: #008000; } /* Information */
             <section class="normal" id="section-">
 <div id="data" class="section level1">
 <h1><span class="header-section-number">2</span> Data Storage</h1>
+<script src="./libs/ext/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <p>All of the steps in this section must be performed from the Unix system <code>transfer.rc.hms.harvard.edu</code>, which you access via SSH using your eCommons username and password. The examples below use the username <code>abc123</code>, so in the typed commands after the <code>$</code> you must substitute your own username (or the username of whomever you’re working on behalf of).</p>
 <div id="download-the-primary-sequence-data-to-imstor" class="section level2">
 <h2><span class="header-section-number">2.1</span> Download the primary sequence data to ImStor</h2>
-<pre><code>abc123@transfer:~$ cd /n/files/ImStor/sorger/data/rnaseq
+<pre><code class="shell">
+abc123@transfer:~$ cd /n/files/ImStor/sorger/data/rnaseq
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq$ mkdir abc123
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq$ cd abc123
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ mkdir project_name
-abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ cd project_name</code></pre>
+abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ cd project_name
+</code></pre>
 <p>Now, follow the data download instructions from your sequencing facility. At HMS, the sequencing core will often share a web URL that contains your data and additional QC reports. You can download the entire directory (or a subfolder with just your FASTQ files) using a recursive <code>wget</code> command:</p>
 <pre><code>abc123@transfer:/n/.../abc123/project_name$ wget -r --no-parent &lt;URL to download&gt;</code></pre>
 <p>replacing <code>&lt;URL to download&gt;</code> with the link to the directory containing all the files you want to download.</p>

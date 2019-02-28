@@ -1,5 +1,8 @@
 # Data Storage {#data}
 
+<script src="./libs/ext/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 All of the steps in this section must be performed from the Unix system `transfer.rc.hms.harvard.edu`,
 which you access via SSH using your eCommons username and password. The examples below use
 the username `abc123`, so in the typed commands after the `$` you must substitute your own
@@ -7,13 +10,13 @@ username (or the username of whomever you're working on behalf of).
 
 ## Download the primary sequence data to ImStor
 
-```
+<pre><code class="shell">
 abc123@transfer:~$ cd /n/files/ImStor/sorger/data/rnaseq
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq$ mkdir abc123
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq$ cd abc123
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ mkdir project_name
 abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ cd project_name
-```
+</code></pre>
 
 Now, follow the data download instructions from your sequencing facility. At HMS, the sequencing core will often share a web URL that contains your data and additional QC reports. You can download the entire directory (or a subfolder with just your FASTQ files) using a recursive `wget` command:
 
