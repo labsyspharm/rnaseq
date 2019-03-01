@@ -50,38 +50,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #0000ff; } /* Keyword */
-code > span.ch { color: #008080; } /* Char */
-code > span.st { color: #008080; } /* String */
-code > span.co { color: #008000; } /* Comment */
-code > span.ot { color: #ff4000; } /* Other */
-code > span.al { color: #ff0000; } /* Alert */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #008000; font-weight: bold; } /* Warning */
-code > span.cn { } /* Constant */
-code > span.sc { color: #008080; } /* SpecialChar */
-code > span.vs { color: #008080; } /* VerbatimString */
-code > span.ss { color: #008080; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #0000ff; } /* ControlFlow */
-code > span.op { } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #ff4000; } /* Preprocessor */
-code > span.do { color: #008000; } /* Documentation */
-code > span.an { color: #008000; } /* Annotation */
-code > span.cv { color: #008000; } /* CommentVar */
-code > span.at { } /* Attribute */
-code > span.in { color: #008000; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="extra-styles.css" type="text/css" />
 </head>
 
 <body>
@@ -142,28 +171,30 @@ code > span.in { color: #008000; } /* Information */
 <h1><span class="header-section-number">2</span> Data Storage</h1>
 <script src="./libs/ext/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<p>All of the steps in this section must be performed from the Unix system <code>transfer.rc.hms.harvard.edu</code>, which you access via SSH using your eCommons username and password. The examples below use the username <code>abc123</code>, so in the typed commands after the <code>$</code> you must substitute your own username (or the username of whomever you’re working on behalf of).</p>
+<p>All of the steps in this section must be performed from the Unix system <code>transfer.rc.hms.harvard.edu</code>,
+which you access via SSH using your eCommons username and password. The examples below use
+the username <code>abc123</code>, so in the typed commands after the <code>$</code> you must substitute your own
+username (or the username of whomever you’re working on behalf of).</p>
 <div id="download-the-primary-sequence-data-to-imstor" class="section level2">
 <h2><span class="header-section-number">2.1</span> Download the primary sequence data to ImStor</h2>
-<pre><code class="shell">
-abc123@transfer:~$ cd /n/files/ImStor/sorger/data/rnaseq
-abc123@transfer:/n/files/ImStor/sorger/data/rnaseq$ mkdir abc123
-abc123@transfer:/n/files/ImStor/sorger/data/rnaseq$ cd abc123
-abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ mkdir project_name
-abc123@transfer:/n/files/ImStor/sorger/data/rnaseq/abc123$ cd project_name
-</code></pre>
+<pre><code>[abc123@transfer ~]$ cd /n/files/ImStor/sorger/data/rnaseq
+[abc123@transfer rnaseq]$ mkdir abc123
+[abc123@transfer rnaseq]$ cd abc123
+[abc123@transfer abc123]$ mkdir project_name
+[abc123@transfer abc123]$ cd project_name</code></pre>
 <p>Now, follow the data download instructions from your sequencing facility. At HMS, the sequencing core will often share a web URL that contains your data and additional QC reports. You can download the entire directory (or a subfolder with just your FASTQ files) using a recursive <code>wget</code> command:</p>
-<pre><code>abc123@transfer:/n/.../abc123/project_name$ wget -r --no-parent &lt;URL to download&gt;</code></pre>
-<p>replacing <code>&lt;URL to download&gt;</code> with the link to the directory containing all the files you want to download.</p>
+<pre><code>[abc123@transfer project_name]$ wget -r --no-parent http://facility-url...</code></pre>
+<p>replacing <code>http://facility-url...</code> with the link to the directory containing all the files you want to download.</p>
 </div>
 <div id="copy-the-sequence-data-to-nscratch2" class="section level2">
 <h2><span class="header-section-number">2.2</span> Copy the sequence data to /n/scratch2</h2>
 <p>After creating a permanent copy of your data on ImStor, you will want to also create a secondary working copy on <code>/n/scratch2</code>, where all <code>bcbio</code> analysis will actually be performed.</p>
-<pre><code>abc123@transfer:/n/files/.../abc123/project_name$ cd ..
-abc123@transfer:/n/files/.../abc123$ mkdir /n/scratch2/abc123
-abc123@transfer:/n/files/.../abc123$ rsync -avP project_name /n/scratch2/abc123
-abc123@transfer:/n/files/.../abc123$ exit</code></pre>
-<p>It’s important not to put a trailing <code>/</code> on <code>project_name</code> in the <code>rsync</code> command. (If you include the <code>/</code>, the files will end up one directory level too high)</p>
+<pre><code>[abc123@transfer project_name]$ cd ..
+[abc123@transfer abc123]$ mkdir /n/scratch2/abc123
+[abc123@transfer abc123]$ rsync -avP project_name /n/scratch2/abc123
+[abc123@transfer abc123]$ exit</code></pre>
+<p>It’s important not to put a trailing <code>/</code> on <code>project_name</code> in the <code>rsync</code> command. (If you include
+the <code>/</code>, the files will end up one directory level too high)</p>
 
 </div>
 </div>
