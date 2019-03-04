@@ -25,10 +25,8 @@
 * When you first log into O2, you are given a login shell. While you will be able to submit jobs (like `bcbio` below) from the login shell, you will not be able to run resource intensive jobs, such as merging of fastq files. To do the latter, you need to request an interactive compute shell using the new `soar` command you just defined. Simply type `soar` and you should get an output that looks something like this:
 
     ```
-    [as773@login05 ~]$ soar
+    [abc123@login01 ~]$ soar
     srun: job 6094734 queued and waiting for resources
     srun: job 6094734 has been allocated resources
-    [as773@compute-a-16-70 ~]$
+    [abc123@compute-a-01-02 ~]$
     ```
-    where `as773` is replaced by your eCommons ID.
-
