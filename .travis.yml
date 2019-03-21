@@ -1,5 +1,4 @@
 language: R
-cache: packages
 
 r_packages:
   - bookdown
