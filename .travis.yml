@@ -1,9 +1,9 @@
 language: R
 
-r_packages:
-  - bookdown
-
-script: bash ./scripts/render.sh
+install:
+  - Rscript -e 'install.packages("bookdown")'
+script:
+  - Rscript -e 'bookdown::render_book("index.md")'
 
 deploy:
   provider: pages
