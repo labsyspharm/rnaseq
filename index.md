@@ -1,6 +1,8 @@
 ---
 title: "Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio"
-author: Laboratory of Systems Pharmacology
+author: |
+  | Artem Sokolov, Sarah Boswell, Jeremy Muhlich
+  | Laboratory of Systems Pharmacology
 date: "Last Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -9,7 +11,7 @@ github-repo: labsyspharm/rnaseq
 
 # Quick Start {-}
 
-1. [Ensure your O2 environment is properly setup to run `bcbio`.](#prereqs) This only needs to be done once.
+1. [Ensure your O2 environment is properly setup to run `bcbio`.](#prereqs)
 2. [Put your data in permanent storage and create a copy on `/n/scratch2/`.](#data)
 3. [Do you have multiple fastq files that need to be merged for each sample?](#sampledesc)
     - If yes, run `bcbio_prepare_samples.py` to merge the files. Rename the resulting `*-merged.csv` to `alignment.csv`. (This is often the case for deep RNAseq experiments.)
