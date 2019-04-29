@@ -11,22 +11,23 @@
     ```{bash, eval=FALSE}
     # Defines a new command, soar, for requesting an interactive compute shell
     alias 'soar=srun -p interactive -t 0-12:00 -n 2 --pty /bin/bash'
-	
-    # Environment variables for running bcbio
-    export PATH=/n/app/bcbio/dev/anaconda/bin/:/n/app/bcbio/tools/bin:$PATH
     ```
 
-    Save and exit (`CTRL+O` and `CTRL+X` in `nano`). The first line defines a new command `soar`, which you will use to request an interactive compute shell after logging into O2. The `export` line tells your environment where `bcbio` is located.
+    Save and exit (`CTRL+O` and `CTRL+X` in `nano`). This defines a new command `soar`, which you will use to request an interactive compute shell after logging into O2. **This needs to be done only once.**
 	
-* **The environment installed in the `bcbio` directory will occasionally create conflicts with other O2 modules. If you intend on using O2 for more than alignment of RNAseq data, it is good practice to comment out the `export` line (by placing a # in front of it) when not using `bcbio`.**
-
 * Log out of O2 and log back in. This will ensure that the new lines in `.bashrc` take effect. (Alternatively, you can type `source ~/.bashrc` without logging out.)
 
-* When you first log into O2, you are given a login shell. While you will be able to submit jobs (like `bcbio` below) from the login shell, you will not be able to run resource intensive jobs, such as merging of fastq files. To do the latter, you need to request an interactive compute shell using the new `soar` command you just defined. Simply type `soar` and you should get an output that looks something like this:
+* When you first log into O2, you are given a login shell. While you will be able to submit jobs (like `bcbio`) from the login shell, you will not be able to run resource intensive jobs, such as merging of fastq files. To do the latter, you need to request an interactive compute shell using the new `soar` command you just defined. Simply type `soar` and you should get an output that looks something like this:
 
     ```
     [abc123@login01 ~]$ soar
     srun: job 6094734 queued and waiting for resources
     srun: job 6094734 has been allocated resources
     [abc123@compute-a-01-02 ~]$
+    ```
+
+* Lastly, load the bcbio module by typing `module load bcbio` in your shell prompt:
+
+    ```
+    [abc123@compute-a-01-02 ~]$ module load bcbio
     ```

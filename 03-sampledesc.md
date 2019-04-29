@@ -12,13 +12,7 @@ S4.fastq.gz,S4
 
 where file `S1.fastq.gz` is mapped to the sample named `S1`, and so on. Additional columns can be included in this file and get preserved by bcbio as sample metadata.
 
-If you are currently in your project directory `/n/scratch2/abc123/myProject/` and have your data in the `fastq/` subdirectory, a barebones sample description file can constructed by running the following command:
-
-```{bash, eval=FALSE}
-(echo 'samplename,description'; for f in fastq/*fastq*; do readlink -f $f | perl -pe 's/(.*?_(S[0-9]+)_.*)/\1,\2/'; done) > alignment.csv
-```
-
-**The rest of the guide assumes that your sample description file is named `alignment.csv`.**
+Each subsection below shows how to generate a sample description file. **The rest of the guide assumes that this sample description file is named `alignment.csv`.**
 
 ## Digital Gene Expression
 
@@ -29,7 +23,11 @@ samplename,description
 DGE1_XT_S1_R1_001.fastq.gz,MasterPlate
 ```
 
-where the matching `DGE1_XT_S1_R2_001.fastq.gz` is not listed explicitly.
+where the matching `DGE1_XT_S1_R2_001.fastq.gz` is not listed explicitly. Because of the high-throughput nature of DGE, all reads will generally be inside a single FASTQ file. This makes it easy to compose a sample description file by hand, as it will usually contain only two lines. When dealing with multiple FASTQ files, the sample description file can also be generated automatically by running the following command:
+
+```{bash, eval=FALSE}
+(echo 'samplename,description'; for f in fastq/*R1*fastq*.*z*; do readlink -f $f | perl -pe 's/(.*?_(S[0-9]+)_.*)/\1,\2/'; done) > alignment.csv
+```
 
 ## Deep RNAseq {#sampledesc-deep}
 
@@ -47,12 +45,25 @@ samplename,description
 /n/scratch2/abc123/myProject/fastq/TRA00140445_S2_L004_R1.fastq.bz2,S2
 ```
 
+lists the mapping for two samples `S1` and `S2`, each having data collected across four sequencer lanes.
 
-lists the mapping for two samples `S1` and `S2`, each having data collected across four sequencer lanes. As above, such a file can be constructed automatically by running the following command from your project directory, while having your raw sequence files in the `fastq/` subdirectory:
+If you are currently in your project directory `/n/scratch2/abc123/myProject/` and have your data in the `fastq/` subdirectory, such a file can be constructed automatically by running the following command:
 
 ```{bash, eval=FALSE}
-(echo 'samplename,description'; for f in fastq/*fastq*; do readlink -f $f | perl -pe 's/(.*?_(S[0-9]+)_.*)/\1,\2/'; done) > toMerge.csv
+(echo 'samplename,description'; for f in fastq/*fastq*.*z*; do readlink -f $f | perl -pe 's/(.*?_(S[0-9]+)_.*)/\1,\2/'; done) > toMerge.csv
 ```
+
+### One file per sample
+
+If you don't have multiple FASTQ files per sample, then `toMerge.csv` that you just constructed becomes your sample description file. Rename it to `alignment.csv` using
+
+```
+mv toMerge.csv alignment.csv
+```
+
+and proceed to [downloading a reference genome](#refgenome).
+
+### Multiple files per sample
 
 Once you have prepared the file `toMerge.csv`, run the following command to execute the merge:
 ```
