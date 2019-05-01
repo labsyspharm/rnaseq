@@ -1,7 +1,7 @@
 ---
 title: "Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio"
 author: |
-  | Artem Sokolov, Sarah Boswell, Jeremy Muhlich
+  | Artem Sokolov, Sarah Boswell, Jeremy Muhlich, Clemens Hug
   | Laboratory of Systems Pharmacology
 date: "Last Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site

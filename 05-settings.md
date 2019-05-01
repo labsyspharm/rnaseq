@@ -8,35 +8,30 @@
 
 ## Digital Gene Expression
 
-Copy and paste the following lines to your `O2.yaml`. Replace `abc123` with your eCommons ID and `myProject` with your project name.
+For DGE, we recommend to use the following configuration file as a template. Copy and paste the the lines below to your `O2.yaml` or [download it directly](example_settings/dge/O2.yaml) using the command `wget https://github.com/labsyspharm/rnaseq/example_settings/dge/O2.yaml`.
 
+In the downloaded file, replace `abc123` with your eCommons ID and `myProject` with your project name.
+
+```{r, dge, echo=FALSE, result="asis", comment=NA}
+cat(
+  paste(
+    readLines(file.path("example_settings", "dge", "O2.yaml")),
+    collapse = "\n"
+  )
+)
 ```
-details:
-  - analysis: scRNA-seq
-    algorithm:
-      transcriptome_fasta: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.cdna.all.fa
-      transcriptome_gtf: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.95.gtf
-      umi_type: harvard-scrb
-      minimum_barcode_depth: 0
-      cellular_barcode_correction: 1
-      positional_umi: False
-    genome_build: hg38
-```
-
-
 
 ## Deep RNAseq
 
-Copy and paste the following lines to your `O2.yaml`. Replace `abc123` with your eCommons ID and `myProject` with your project name. Ensure that the Spike-in FASTA file matches what you [downloaded previously](#spike-in).
+For deep RNAseq, we recommend to use the following configuration file as a template. Copy and paste the lines below to your `O2.yaml` or [download it directly](example_settings/rna_seq/O2.yaml) using the command `wget https://github.com/labsyspharm/rnaseq/example_settings/rna_seq/O2.yaml`.
 
-```
-details:
-  - analysis: RNA-seq
-    genome_build: hg38
-    algorithm:
-      transcriptome_fasta: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.cdna.all.fa
-      transcriptome_gtf: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.95.gtf
-      aligner: hisat2
-      strandedness: firststrand
-      spikein_fasta:  /n/scratch2/abc123/myProject/reference/ERCC92/ERCC92.fa 
+In the downloaded file, replace `abc123` with your eCommons ID and `myProject` with your project name. Ensure that the Spike-in FASTA file matches what you [downloaded previously](#spike-in).
+
+```{r, rna_seq, echo=FALSE, result="asis", comment=NA}
+cat(
+  paste(
+    readLines(file.path("example_settings", "rna_seq", "O2.yaml")),
+    collapse = "\n"
+  )
+)
 ```
