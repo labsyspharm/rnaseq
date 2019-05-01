@@ -8,7 +8,7 @@
 
 ## Digital Gene Expression
 
-For DGE, we recommend to use the following configuration file as a template. Copy and paste the the lines below to your `O2.yaml` or [download it directly](example_settings/dge/O2.yaml) using the command `wget https://github.com/labsyspharm/rnaseq/example_settings/dge/O2.yaml`.
+For DGE, we recommend to use the following configuration file as a template. Copy and paste the the lines below to your `O2.yaml` or [download it directly](example_settings/dge/O2.yaml) using the command `wget https://labsyspharm.github.io/rnaseq/example_settings/dge/O2.yaml`.
 
 In the downloaded file, replace `abc123` with your eCommons ID and `myProject` with your project name.
 
@@ -23,7 +23,7 @@ cat(
 
 ## Deep RNAseq
 
-For deep RNAseq, we recommend to use the following configuration file as a template. Copy and paste the lines below to your `O2.yaml` or [download it directly](example_settings/rna_seq/O2.yaml) using the command `wget https://github.com/labsyspharm/rnaseq/example_settings/rna_seq/O2.yaml`.
+For deep RNAseq, we recommend to use the following configuration file as a template. Copy and paste the lines below to your `O2.yaml` or [download it directly](example_settings/rna_seq/O2.yaml) using the command `wget https://labsyspharm.github.io/rnaseq/example_settings/rna_seq/O2.yaml`.
 
 In the downloaded file, replace `abc123` with your eCommons ID and `myProject` with your project name. Ensure that the Spike-in FASTA file matches what you [downloaded previously](#spike-in).
 
