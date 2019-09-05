@@ -39,3 +39,23 @@ After creating a permanent copy of your data on ImStor, you will want to also cr
 
 It's important not to put a trailing `/` on `project_name` in the `rsync` command. (If you include
 the `/`, the files will end up one directory level too high)
+
+## (Optional) Convert BCL files to FASTQ
+
+Typically, the conversion from BCL to FASTQ is done by the sequencing core. However, occasionally you may need to perform a custom conversion. To do so, you will want to use [Illumina's bcl2fastq tool](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html). The tool accepts many parameters, the precise value of which is highly dependent on the sequencer and the library prep. Consult the [tool guide](https://support.illumina.com/content/dam/illumina-support/documents/documentation/software_documentation/bcl2fastq/bcl2fastq2-v2-20-software-guide-15051736-03.pdf) to identify the proper parameter settings that match your library preparation protocol. 
+
+You will then want to logout of `transfer.rc.hms.harvard.edu`, log back in to `o2.hms.harvard.edu` and request a compute node using [the previously defined `soar` command](#prereqs):
+
+```
+[abc123@login01 ~]$ soar
+[abc123@compute-a-01-02 ~]$
+```
+
+On the compute node, navigate to your data location that contains BCL files and run the `bcl2fastq` tools:
+
+```
+module load bcl2fastq
+cd /n/scratch2/abc123/project_name/bcl
+mkdir ../fastq
+bcl2fastq <settings parameters> --sample-sheet <path/to/sample/sheet> --runfolder-dir . --output-dir ../fastq
+```

@@ -1,7 +1,9 @@
-# Reference Genome {#refgenome}
+# (Optional) Reference Genome {#refgenome}
 
-* Navigate to ftp://ftp.ensembl.org/pub/ and identify the latest release of the Ensembl reference genomes. As of writing this guide, the latest is `release-95`.
-* For a given release, you will want to identify `cdna` and `gtf` files for your species. For example, when working with human data, the files are
+**This step is optional.** `bcbio` maintains a current version of human and mouse genomes internally. If you are happy with using the standard, proceed to [composing a setting YAML file](#settings). Otherwise, read on about composing a custom reference.
+
+* Navigate to ftp://ftp.ensembl.org/pub/ and identify the desired release of the Ensembl reference genome.
+* For a given release, you will want to identify `cdna` and `gtf` files for your species. For example, when working with `release-95` human data, the files are
 
 ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz and
 ftp://ftp.ensembl.org/pub/release-95/gtf/homo_sapiens/Homo_sapiens.GRCh38.95.gtf.gz
@@ -24,6 +26,12 @@ wget ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/ncrna/Homo_sapiens.
 
 ```
 cat Homo_sapiens.GRCh38.cdna.all.fa.gz Homo_sapiens.GRCh38.ncrna.fa.gz > Homo_sapiens.GRCh38.95.fa.gz
+```
+
+* Unzip all files:
+
+```
+gunzip *.gz
 ```
 
 ## Digital Gene Expression
