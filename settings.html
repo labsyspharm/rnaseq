@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 YAML Settings | Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio</title>
+  <meta name="description" content="5 YAML Settings | Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 YAML Settings | Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="labsyspharm/rnaseq" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 YAML Settings | Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="refgenome.html"/>
+<link rel="next" href="bcbio.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="extra-styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Aligning RNAseq reads with bcbio</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Quick Start</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#recommended-directory-structure"><i class="fa fa-check"></i>Recommended Directory Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="prereqs.html"><a href="prereqs.html"><i class="fa fa-check"></i><b>1</b> Prerequisites in O2 environment</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data Storage</a><ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#download-the-primary-sequence-data-to-imstor"><i class="fa fa-check"></i><b>2.1</b> Download the primary sequence data to ImStor</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#copy-the-sequence-data-to-nscratch2"><i class="fa fa-check"></i><b>2.2</b> Copy the sequence data to /n/scratch2</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#optional-convert-bcl-files-to-fastq"><i class="fa fa-check"></i><b>2.3</b> (Optional) Convert BCL files to FASTQ</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="sampledesc.html"><a href="sampledesc.html"><i class="fa fa-check"></i><b>3</b> Sample Description</a><ul>
+<li class="chapter" data-level="3.1" data-path="sampledesc.html"><a href="sampledesc.html#digital-gene-expression"><i class="fa fa-check"></i><b>3.1</b> Digital Gene Expression</a></li>
+<li class="chapter" data-level="3.2" data-path="sampledesc.html"><a href="sampledesc.html#sampledesc-deep"><i class="fa fa-check"></i><b>3.2</b> Deep RNAseq</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="sampledesc.html"><a href="sampledesc.html#one-file-per-sample"><i class="fa fa-check"></i><b>3.2.1</b> One file per sample</a></li>
+<li class="chapter" data-level="3.2.2" data-path="sampledesc.html"><a href="sampledesc.html#multiple-files-per-sample"><i class="fa fa-check"></i><b>3.2.2</b> Multiple files per sample</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="refgenome.html"><a href="refgenome.html"><i class="fa fa-check"></i><b>4</b> (Optional) Reference Genome</a><ul>
+<li class="chapter" data-level="4.1" data-path="refgenome.html"><a href="refgenome.html#digital-gene-expression-1"><i class="fa fa-check"></i><b>4.1</b> Digital Gene Expression</a></li>
+<li class="chapter" data-level="4.2" data-path="refgenome.html"><a href="refgenome.html#spike-in"><i class="fa fa-check"></i><b>4.2</b> Deep RNAseq</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="settings.html"><a href="settings.html"><i class="fa fa-check"></i><b>5</b> YAML Settings</a><ul>
+<li class="chapter" data-level="5.1" data-path="settings.html"><a href="settings.html#digital-gene-expression-2"><i class="fa fa-check"></i><b>5.1</b> Digital Gene Expression</a></li>
+<li class="chapter" data-level="5.2" data-path="settings.html"><a href="settings.html#deep-rnaseq"><i class="fa fa-check"></i><b>5.2</b> Deep RNAseq</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bcbio.html"><a href="bcbio.html"><i class="fa fa-check"></i><b>6</b> Submit <code>bcbio</code> job</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aligning deep RNAseq and Digital Gene Expression (DGE) reads using bcbio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="settings" class="section level1">
+<h1><span class="header-section-number">5</span> YAML Settings</h1>
+<p><code>bcbio</code> offers a rich suite of analysis tools, with <a href="https://bcbio-nextgen.readthedocs.io/en/latest/contents/configuration.html#algorithm-parameters">highly-customizable configurations</a>. The number of options can be overwhelming. Here, we provide exemplar files that should work for most standard analyses at the LSP. These should serve as a starting point, and users are expected to tweak the files to suit their particular needs.</p>
+<ul>
+<li>For the purposes of consistency with the rest of the guide, please name your configuration file <code>O2.yaml</code>.</li>
+<li>If you are using the standard reference genome (i.e., not downloading your own), remove lines that begin with <code>transcriptome_fasta</code> and <code>transcriptome_gtf</code>.</li>
+<li>If you are using a custom reference, remove the line that begins with <code>genome_build</code>.</li>
+<li>If you reference contains non-coding regions as <a href="refgenome.html#refgenome">discussed previously</a>, replace <code>GRCh38.cdna.all.fa.gz</code> with <code>GRCh38.97.fa.gz</code>.</li>
+<li>In the YAML format, white space matters! When copying and pasting the examples below, please ensure that each line is properly indented.</li>
+</ul>
+<div id="digital-gene-expression-2" class="section level2">
+<h2><span class="header-section-number">5.1</span> Digital Gene Expression</h2>
+<p>For DGE, we recommend to use the following configuration file as a template. Copy and paste the the lines below to your <code>O2.yaml</code> or <a href="example_settings/dge/O2.yaml">download it directly</a> using the command <code>wget https://labsyspharm.github.io/rnaseq/example_settings/dge/O2.yaml</code>.</p>
+<p>If using a custom reference, replace <code>abc123</code> with your eCommons ID and <code>myProject</code> with your project name.</p>
+<pre><code>details:
+  - analysis: scRNA-seq
+    genome_build: hg38
+    algorithm:
+      transcriptome_fasta: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.cdna.all.fa
+      transcriptome_gtf: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.97.gtf
+      umi_type: harvard-scrb
+      minimum_barcode_depth: 0
+      cellular_barcode_correction: 1
+      positional_umi: False</code></pre>
+</div>
+<div id="deep-rnaseq" class="section level2">
+<h2><span class="header-section-number">5.2</span> Deep RNAseq</h2>
+<p>For deep RNAseq, we recommend to use the following configuration file as a template. Copy and paste the lines below to your <code>O2.yaml</code> or <a href="example_settings/rna_seq/O2.yaml">download it directly</a> using the command <code>wget https://labsyspharm.github.io/rnaseq/example_settings/rna_seq/O2.yaml</code>.</p>
+<p>If using a custom reference, replace <code>abc123</code> with your eCommons ID and <code>myProject</code> with your project name. Ensure that the Spike-in FASTA file matches what you <a href="refgenome.html#spike-in">downloaded previously</a>.</p>
+<pre><code>details:
+  - analysis: RNA-seq
+    genome_build: hg38
+    algorithm:
+      transcriptome_fasta: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.cdna.all.fa
+      transcriptome_gtf: /n/scratch2/abc123/myProject/reference/Homo_sapiens.GRCh38.97.gtf
+      aligner: hisat2
+      strandedness: firststrand
+      spikein_fasta:  /n/scratch2/abc123/myProject/reference/ERCC92.fa</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="refgenome.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bcbio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
