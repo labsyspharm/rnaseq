@@ -5,7 +5,7 @@
 * For the purposes of consistency with the rest of the guide, please name your configuration file `O2.yaml`.
 * If you are using the standard reference genome (i.e., not downloading your own), remove lines that begin with `transcriptome_fasta` and `transcriptome_gtf`.
 * If you are using a custom reference, remove the line that begins with `genome_build`.
-* If you reference contains non-coding regions as [discussed previously](#refgenome), replace `GRCh38.cdna.all.fa.gz` with `GRCh38.95.fa.gz`.
+* If you reference contains non-coding regions as [discussed previously](#refgenome), replace `GRCh38.cdna.all.fa.gz` with `GRCh38.97.fa.gz`.
 * In the YAML format, white space matters! When copying and pasting the examples below, please ensure that each line is properly indented.
 
 ## Digital Gene Expression

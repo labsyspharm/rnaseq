@@ -2,30 +2,30 @@
 
 **This step is optional.** `bcbio` maintains a current version of human and mouse genomes internally. If you are happy with using the standard, proceed to [composing a setting YAML file](#settings). Otherwise, read on about composing a custom reference.
 
-* Navigate to ftp://ftp.ensembl.org/pub/ and identify the desired release of the Ensembl reference genome.
-* For a given release, you will want to identify `cdna` and `gtf` files for your species. For example, when working with `release-95` human data, the files are
+* Navigate to ftp://ftp.ensembl.org/pub/ and identify the desired release of the Ensembl reference genome. As of `r Sys.Date()`, the latest is `release-97`.
+* For a given release, you will want to identify `cdna` and `gtf` files for your species. For example, when working with `release-97` human data, the files are
 
-ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz and
-ftp://ftp.ensembl.org/pub/release-95/gtf/homo_sapiens/Homo_sapiens.GRCh38.95.gtf.gz
+ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz and
+ftp://ftp.ensembl.org/pub/release-97/gtf/homo_sapiens/Homo_sapiens.GRCh38.97.gtf.gz
 
 * Ensure that you are in the `reference/` subfolder of your project.
 * Download the reference files using the `wget` command:
 
 ```
-wget ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
-wget ftp://ftp.ensembl.org/pub/release-95/gtf/homo_sapiens/Homo_sapiens.GRCh38.95.gtf.gz
+wget ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
+wget ftp://ftp.ensembl.org/pub/release-97/gtf/homo_sapiens/Homo_sapiens.GRCh38.97.gtf.gz
 ```
 
-* If you are interested in also looking at the non-coding regions, you will want to download the matching `ncrna` file. Following the `release-95` example above, the download command will be
+* If you are interested in also looking at the non-coding regions, you will want to download the matching `ncrna` file. Following the `release-97` example above, the download command will be
 
 ```
-wget ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz
+wget ftp://ftp.ensembl.org/pub/release-97/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh38.ncrna.fa.gz
 ```
 
 * After downloading both `cdna` and `ncrna`, merge the two together into a single file:
 
 ```
-cat Homo_sapiens.GRCh38.cdna.all.fa.gz Homo_sapiens.GRCh38.ncrna.fa.gz > Homo_sapiens.GRCh38.95.fa.gz
+cat Homo_sapiens.GRCh38.cdna.all.fa.gz Homo_sapiens.GRCh38.ncrna.fa.gz > Homo_sapiens.GRCh38.97.fa.gz
 ```
 
 * Unzip all files:
