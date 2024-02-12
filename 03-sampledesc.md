@@ -35,19 +35,19 @@ In the case of deep RNAseq data, you may have multiple FASTQ files per sample. P
 
 ```
 samplename,description
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S1_L001_R1.fastq.bz2,S1
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S1_L002_R1.fastq.bz2,S1
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S1_L003_R1.fastq.bz2,S1
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S1_L004_R1.fastq.bz2,S1
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S2_L001_R1.fastq.bz2,S2
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S2_L002_R1.fastq.bz2,S2
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S2_L003_R1.fastq.bz2,S2
-/n/scratch2/abc123/myProject/fastq/TRA00140445_S2_L004_R1.fastq.bz2,S2
+/n/scratch/abc123/myProject/fastq/TRA00140445_S1_L001_R1.fastq.bz2,S1
+/n/scratch/abc123/myProject/fastq/TRA00140445_S1_L002_R1.fastq.bz2,S1
+/n/scratch/abc123/myProject/fastq/TRA00140445_S1_L003_R1.fastq.bz2,S1
+/n/scratch/abc123/myProject/fastq/TRA00140445_S1_L004_R1.fastq.bz2,S1
+/n/scratch/abc123/myProject/fastq/TRA00140445_S2_L001_R1.fastq.bz2,S2
+/n/scratch/abc123/myProject/fastq/TRA00140445_S2_L002_R1.fastq.bz2,S2
+/n/scratch/abc123/myProject/fastq/TRA00140445_S2_L003_R1.fastq.bz2,S2
+/n/scratch/abc123/myProject/fastq/TRA00140445_S2_L004_R1.fastq.bz2,S2
 ```
 
 lists the mapping for two samples `S1` and `S2`, each having data collected across four sequencer lanes.
 
-If you are currently in your project directory `/n/scratch2/abc123/myProject/` and have your data in the `fastq/` subdirectory, such a file can be constructed automatically by running the following command:
+If you are currently in your project directory `/n/scratch/abc123/myProject/` and have your data in the `fastq/` subdirectory, such a file can be constructed automatically by running the following command:
 
 ```{bash, eval=FALSE}
 (echo 'samplename,description'; for f in fastq/*fastq*.*z*; do readlink -f $f | perl -pe 's/(.*?_(S[0-9]+)_.*)/\1,\2/'; done) > toMerge.csv
