@@ -1,0 +1,43 @@
+name: renderbook
+on:
+  push:
+     branches:
+       - master
+
+jobs:
+  bookdown:
+    name: Render Bookdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-pandoc@v2
+      - name: Install rmarkdown
+        run: Rscript -e 'install.packages(c("rmarkdown","bookdown"))'
+      - name: Render
+        run: Rscript -e 'bookdown::render_book("index.md")'
+      - uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          path: docs
+
+  checkout-and-deploy:
+    name: Checkout and Deploy
+    runs-on: ubuntu-latest
+    needs: bookdown
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: docs
+          path: docs
+      - name: Deploy to GitHub Pages
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          email: clemens_hug@hms.harvard.edu
+          build_dir: docs
+          branch: gh-pages
