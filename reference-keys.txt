@@ -1,0 +1,17 @@
+prereqs
+data
+download-the-primary-sequence-data-to-imstor
+copy-the-sequence-data-to-nscratch
+optional-convert-bcl-files-to-fastq
+sampledesc
+digital-gene-expression
+sampledesc-deep
+one-file-per-sample
+multiple-files-per-sample
+refgenome
+digital-gene-expression-1
+spike-in
+settings
+digital-gene-expression-2
+deep-rnaseq
+bcbio
